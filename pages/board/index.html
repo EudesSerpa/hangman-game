@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hangman Game</title>
+    <title>Hangman Game | Play</title>
     <!-- Favicon -->
     <link
       rel="shortcut icon"
@@ -20,8 +20,8 @@
       referrerpolicy="no-referrer"
     />
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="styles/layout.css" />
-    <link rel="stylesheet" href="styles/styles.css" />
+    <link rel="stylesheet" href="../../styles/layout.css" />
+    <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
     <header class="header wrapper">
@@ -34,12 +34,27 @@
     </header>
 
     <main class="main wrapper">
-      <section class="section welcome-main">
-        <h1 class="welcome-main--title">Hangman Game</h1>
+      <section class="section board">
+        <canvas id="canvas" class="board--canvas" width="1200" height="800">
+          Your browser does not support the HTML5 canvas tag.
+        </canvas>
+      </section>
 
-        <a href="./pages/board/index.html" class="btn primary-btn">Play</a>
-        <a href="./pages/words/index.html" class="btn secondary-btn"
-          >Add new word</a
+      <section class="section word">
+        <div class="word--letter">
+          <span class="word--letter-text">E</span>
+        </div>
+        <div class="word--letter">
+          <span class="word--letter-text"></span>
+        </div>
+      </section>
+
+      <section class="section alphabet"></section>
+
+      <section class="section options">
+        <a href="./index.html" class="btn primary-btn options--btn">New Game</a>
+        <a href="../../index.html" class="btn secondary-btn options--btn"
+          >Exit</a
         >
       </section>
     </main>
@@ -52,5 +67,8 @@
         <a href="https://www.linkedin.com/in/eudes-serpa/">Eudes Serpa</a>
       </p>
     </footer>
+
+    <!-- Custom JS -->
+    <script src="./index.js" type="module"></script>
   </body>
 </html>

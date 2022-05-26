@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary-color: #fff;
+  --secondary-color: #1a4573;
+  --tertiary-color: #1f5288;
+
+  --meet-color: #027b0a;
+  --wrong-color: #e83636;
+
+  --hover-primary-color: #2561a0;
+  --hover-secondary-color: #123153;
+  
+  --bg-color: #0f2a47;
+  --bg-transparent-color: #0f2a47aa;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  max-width: 100vw;
+  min-height: 100vh;
+  background: var(--bg-color);  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to top, var(--hover-primary-color) 0%, var(--hover-secondary-color) 70%, var(--bg-color) 100%);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to top, #fff 0%, var(--hover-primary-color) 70%, var(--bg-color) 100%); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1900' height='1080' preserveAspectRatio='none' viewBox='0 0 1900 1080'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1008%26quot%3b)' fill='none'%3e%3crect width='1900' height='1080' x='0' y='0' fill='%230e2a47'%3e%3c/rect%3e%3cpath d='M887.26 485.22L956.73 485.22L956.73 530.11L887.26 530.11z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M1408.85 315.28L1448.9 315.28L1448.9 355.33L1408.85 355.33z' fill='%23e73635'%3e%3c/path%3e%3cpath d='M1300.09 12.18L1308.19 12.18L1308.19 20.28L1300.09 20.28z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M1709.93 595L1815.56 595L1815.56 658.7L1709.93 658.7z' fill='%23d3b714'%3e%3c/path%3e%3cpath d='M503.5 241.38L511.08 241.38L511.08 248.96L503.5 248.96z' stroke='%23e73635'%3e%3c/path%3e%3cpath d='M725.29 844.74L819.13 844.74L819.13 938.58L725.29 938.58z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M1811.98 29.24L1883.45 29.24L1883.45 100.71L1811.98 100.71z' fill='%23037b0b'%3e%3c/path%3e%3cpath d='M450.1 552.06 a35.67 35.67 0 1 0 71.34 0 a35.67 35.67 0 1 0 -71.34 0z' stroke='%23037b0b'%3e%3c/path%3e%3cpath d='M-1.35 833.86 a89.73 89.73 0 1 0 179.46 0 a89.73 89.73 0 1 0 -179.46 0z' stroke='%23e73635'%3e%3c/path%3e%3cpath d='M994.33 882a41.09 41.09 0 1 0 52.7 63.05z' fill='%23037b0b'%3e%3c/path%3e%3cpath d='M1536.72 402.34a52.66 52.66 0 1 0-66.97 81.28z' stroke='%23037b0b'%3e%3c/path%3e%3cpath d='M-4.84 683.21 a54.53 54.53 0 1 0 109.06 0 a54.53 54.53 0 1 0 -109.06 0z' fill='%23e73635'%3e%3c/path%3e%3cpath d='M1392.23 822.66 a15.92 15.92 0 1 0 31.84 0 a15.92 15.92 0 1 0 -31.84 0z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M1101.76 821.29L1147.32 821.29L1147.32 866.85L1101.76 866.85z' stroke='%23d3b714'%3e%3c/path%3e%3cpath d='M870.46 991.04L947.44 991.04L947.44 1068.02L870.46 1068.02z' fill='%23037b0b'%3e%3c/path%3e%3cpath d='M1798.63 761.13a25.16 25.16 0 1 0 15.72-47.8z' stroke='%23037b0b'%3e%3c/path%3e%3cpath d='M875.31 264.28L957.79 264.28L957.79 274.66L875.31 274.66z' fill='%23d3b714'%3e%3c/path%3e%3cpath d='M1345.81 520.1a5.66 5.66 0 1 0-5.15 10.09z' fill='%23d3b714'%3e%3c/path%3e%3cpath d='M457.71 880.03a7.59 7.59 0 1 0-3.95 14.66z' fill='%23037b0b'%3e%3c/path%3e%3cpath d='M1083.22 85.43a81.9 81.9 0 1 0-5.63-163.71z' fill='%23037b0b'%3e%3c/path%3e%3cpath d='M674.17 864.42L749.46 864.42L749.46 970.02L674.17 970.02z' stroke='%23e73635'%3e%3c/path%3e%3cpath d='M568.5 48.75a91.84 91.84 0 1 0-182.11-23.99z' fill='%23d3b714'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1008'%3e%3crect width='1900' height='1080' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+  font-family: 'Poppins', sans-serif;
+  font-size: 10px;
+  color: var(--primary-color);
+}
+
+/* Generals */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrapper {
+  width: 95%;
+  max-width: 1200px;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+.section {
+  max-width: 1024px;
+  margin-block: 1rem;
+}
+
+.btn {
+  width: 100%;
+  max-width: 380px;
+  padding: 1em 1.5em;
+  border-radius: 6px;
+  font: 600 1.6em 'Poppins', sans-serif;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.35s ease-in-out;
+}
+
+.btn:focus {
+  outline: 2px solid var(--hover-primary-color);
+  outline-offset: -1px;
+}
+
+.primary-btn {
+  color: var(--primary-color);
+  background-color: var(--tertiary-color);
+  box-shadow: 0 2.5px 5px var(--bg-color);
+}
+
+.secondary-btn {
+  color: var(--primary-color);
+  background-color: transparent;
+  border: 1px solid var(--secondary-color);
+}
+
+.btn.primary-btn:hover,
+.btn.primary-btn:active,
+.btn.primary-btn:focus {
+  background-color: var(--hover-primary-color);
+  outline-color: #2378d3;
+}
+
+.btn.secondary-btn:hover,
+.btn.secondary-btn:active,
+.btn.secondary-btn:focus {
+  background-color: var(--hover-secondary-color);
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 90px;
+  padding: 8px;
+}
+
+.header-logo-container {
+  display: block;
+  height: 100%;
+}
+
+.header-logo-container img {
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+/* Main */
+.main {
+  display: grid;
+  place-items: center;
+  margin-block: 2rem;
+}
+
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  font-size: .9rem;
+}
+
+.footer a {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 1px;
+  font-weight: 700;
+}
+
+.footer a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: var(--primary-color);
+  transform: scale(0);
+  transform-origin: left right;
+  transition: transform .3s;
+}
+
+.footer a:hover::after {
+  transform-origin: left right;
+  transform: scale(1);
+}
+
+.fa-heart {
+  margin: 0 .3rem;
+  font-size: 1rem;
+  color: #ea2121;
+}
+
+@media screen and (min-width: 768px) {
+  .wrapper {
+    width: 90%;
+  } 
+}
+
+@media screen and (min-width: 1200px) {
+  .wrapper {
+    width: 80%;
+  } 
+}
