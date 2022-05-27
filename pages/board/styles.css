@@ -1,6 +1,6 @@
 .board--canvas,
 .word,
-.letter {
+.letter-btn {
   background-color: var(--hover-secondary-color);
   border: 1px solid var(--secondary-color);
   border-radius: 6px;
@@ -8,7 +8,7 @@
 }
 
 .word--letter,
-.letter {
+.letter-btn {
   font-weight: 700;
   font-size: calc(.85rem + .5vw);
   color: var(--primary-color);
@@ -51,7 +51,7 @@
   max-width: 768px;
 }
 
-.letter {
+.letter-btn {
   display: inline-block;
   width: 40px;
   height: 40px;
@@ -61,25 +61,25 @@
   user-select: none;
 }
 
-.letter:hover,
-.letter:active {
+.letter-btn:hover,
+.letter-btn:active {
   background-color: var(--tertiary-color);
 }
-.letter:focus {
+.letter-btn:focus {
   background-color: var(--hover-secondary-color);
 }
 
-.letter.selected {
+.letter-btn:disabled {
   pointer-events: none;
   cursor: not-allowed;
 }
 
-.letter.meet {
+.letter-btn.meet {
   background-color: var(--meet-color);
   border-color: var(--meet-color);
 }
 
-.letter.wrong {
+.letter-btn.wrong {
   background-color: var(--wrong-color);
   border-color: var(--wrong-color);
 }
@@ -101,6 +101,6 @@
 @media screen and (min-width: 768px) {
   .options {
     flex-direction: row-reverse;
-    justify-content: space-between;
+    justify-content: space-around;
   }
 }

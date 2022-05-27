@@ -1,5 +1,7 @@
 import { range } from "../../utils/range.js";
 
+export const alphabetContainer = document.querySelector(".alphabet");
+
 /* Creating an array of the alphabet. */
 const alphabet = range({
   start: "A".charCodeAt(0),
@@ -15,13 +17,11 @@ const alphabet = range({
  * container.
  */
 export function renderAlphabet() {
-  const alphabetContainer = document.querySelector(".alphabet");
-
   alphabet.forEach((letter) => {
     const letterElement = document.createElement("button");
     const text = document.createTextNode(letter);
     letterElement.appendChild(text);
-    letterElement.classList.add("letter", "btn");
+    letterElement.classList.add("letter-btn", "btn");
 
     alphabetContainer.appendChild(letterElement);
   });
