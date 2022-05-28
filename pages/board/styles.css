@@ -18,6 +18,7 @@
 .board--canvas {
   width: 100%;
   max-width: 1200px;
+  min-height: 220px;
   max-height: 500px;
   margin: 0 auto;
 }
@@ -37,8 +38,13 @@
 
 .word--letter {
   width: 40px;
+  height: 30px;
   border-bottom: 5px solid var(--secondary-color);
   text-align: center;
+}
+
+.not-guessed {
+  color: #e83636;
 }
 
 /* Alphabet */

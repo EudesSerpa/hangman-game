@@ -20,8 +20,10 @@ export function renderAlphabet() {
   alphabet.forEach((letter) => {
     const letterElement = document.createElement("button");
     const text = document.createTextNode(letter);
-    letterElement.appendChild(text);
+
     letterElement.classList.add("letter-btn", "btn");
+    letterElement.setAttribute("aria-label", `${letter} button`);
+    letterElement.appendChild(text);
 
     alphabetContainer.appendChild(letterElement);
   });
