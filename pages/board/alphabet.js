@@ -18,13 +18,14 @@ const alphabet = range({
  */
 export function renderAlphabet() {
   alphabet.forEach((letter) => {
-    const letterElement = document.createElement("button");
+    const letterBtn = document.createElement("button");
     const text = document.createTextNode(letter);
 
-    letterElement.classList.add("letter-btn", "btn");
-    letterElement.setAttribute("aria-label", `${letter} button`);
-    letterElement.appendChild(text);
+    letterBtn.setAttribute("id", `letter-${letter}`);
+    letterBtn.setAttribute("aria-label", `${letter} button`);
+    letterBtn.classList.add("letter-btn", "btn");
+    letterBtn.appendChild(text);
 
-    alphabetContainer.appendChild(letterElement);
+    alphabetContainer.appendChild(letterBtn);
   });
 }

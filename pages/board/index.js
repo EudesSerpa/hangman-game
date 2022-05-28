@@ -8,11 +8,13 @@ import { wordToGuess } from "./wordToGuess.js";
 let guessAttempts = 6;
 let guessedLetters = new Set();
 
-// --- Alphabet
+// --- Underscores: word to guess
+renderUnderscores();
+
+// --- Alphabet: keyboard
 renderAlphabet();
 
 // --- Canvas
-
 drawBackgound();
 drawGallow();
 drawAttempts(guessAttempts);
@@ -80,27 +82,78 @@ async function renderLetter(letter, isCorrect = true) {
   }
 }
 
+function isLetter(char) {
+  if (char.length > 1) {
+    return false;
+  }
+
+  if (!isNaN(char)) {
+    return false;
+  }
+
+  return true;
+}
+
 /**
- * It checks if the letter(button) pressed is in the word to guess, if it is, it renders the letter, if not, it
+ * It checks if the letter/button pressed is in the word to guess, if it is, it renders the letter, if not, it
  * draws a part of the hangman and decreases the guess attempts.
  *
  * @param event - The event object that is passed to the event handler.
  */
 async function checkLetterPressed(event) {
   try {
-    if (!event.target || event.target.tagName !== "BUTTON") {
+    // Check if not pressed a button (from the virtual keyboard) or key (keyup event)
+    if (event.target.tagName !== "BUTTON" && event.target.tagName !== "BODY") {
       return;
     }
 
-    const buttonPressed = event.target;
-    const letter = buttonPressed.textContent;
+    // Check if the key pressed is a letter
+    if (event.key && !isLetter(event.key)) {
+      return;
+    }
+
+    let buttonPressed;
+    let letter;
+
+    if (event.type === "keyup") {
+      letter = event.key?.toUpperCase();
+      buttonPressed = document.getElementById(`letter-${letter}`);
+    } else {
+      buttonPressed = event.target;
+      letter = buttonPressed.textContent.toUpperCase();
+    }
+
+    // Avoid to render the same letter twice
+    if (buttonPressed.classList.contains("selected")) {
+      return;
+    }
+
+    // Check if the letter is in the word
+    await checkIfLetterBelongsToWord(letter, buttonPressed);
+  } catch (error) {
+    console.log(`Error: ${error}, function: checkLetterPressed`);
+  }
+}
+
+/**
+ * It checks if the letter pressed is in the word to guess, if it is, it adds the letter to the
+ * guessedLetters set and renders the letter in the word to guess, if it isn't, it draws a part of the
+ * hangman and checks if the player lost.
+ *
+ * @param letter - the letter that was pressed.
+ * @param buttonPressed - the button whose letter was pressed.
+ */
+async function checkIfLetterBelongsToWord(letter, buttonPressed) {
+  try {
+    buttonPressed.disabled = true;
+    buttonPressed.classList.add("selected");
+
     const word = await wordToGuess;
     const isLetterInWord = word.includes(letter);
 
-    buttonPressed.disabled = true;
-
     if (isLetterInWord) {
       buttonPressed.classList.add("meet");
+
       guessedLetters.add(letter);
 
       renderLetter(letter);
@@ -117,7 +170,7 @@ async function checkLetterPressed(event) {
       checkIfLost();
     }
   } catch (error) {
-    console.log(`Error: ${error}, function: checkLetterPressed`);
+    console.log(`Error: ${error}, function: checkIfLetterBelongsToWord`);
   }
 }
 
@@ -135,8 +188,7 @@ async function checkIfWon() {
     if (guessedLetters.size === lettersInWordToGuess.size) {
       endGame({
         text: "You win!",
-        imgUrl:
-          "https://stickers.wiki/static/stickers/line_talking_super_mario/file_226273.webp?ezimgfmt=rs:144x144/rscb1/ng:webp/ngcb1",
+        imgUrl: "https://i.postimg.cc/Jzk2Dphy/win.webp",
         textColor: "#2fd04a",
       });
     }
@@ -170,8 +222,7 @@ async function checkIfLost() {
 
       endGame({
         text: "You lost!",
-        imgUrl:
-          "https://stickers.wiki/static/stickers/line_talking_super_mario/file_226284.webp?ezimgfmt=rs:144x144/rscb1/ng:webp/ngcb1",
+        imgUrl: "https://i.postimg.cc/8Pt6dGj9/lost.webp",
         textColor: "#e9110e",
       });
     }
@@ -190,6 +241,8 @@ async function checkIfLost() {
  * @param {string} options.textColor - The color of the text.
  */
 function endGame({ text, imgUrl, textColor = "#fff" }) {
+  document.removeEventListener("keyup", checkLetterPressed);
+
   // Disable all buttons
   const buttons = document.querySelectorAll(".letter-btn");
   Array.from(buttons).forEach((button) => {
@@ -225,6 +278,5 @@ function endGame({ text, imgUrl, textColor = "#fff" }) {
   };
 }
 
-renderUnderscores();
-
 alphabetContainer.addEventListener("click", checkLetterPressed);
+document.addEventListener("keyup", checkLetterPressed);
