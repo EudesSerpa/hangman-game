@@ -90,24 +90,3 @@
   background-color: var(--wrong-color);
   border-color: var(--wrong-color);
 }
-
-/* Options */
-.options {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
-  width: 100%;
-  margin-top: 2rem;
-}
-
-.options--btn {
-  max-width: 320px;
-}
-
-@media screen and (min-width: 768px) {
-  .options {
-    flex-direction: row-reverse;
-    justify-content: space-around;
-  }
-}

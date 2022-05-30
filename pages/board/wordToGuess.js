@@ -10,12 +10,12 @@ const getRandomWord = async () => {
   try {
     const words = await getWords();
     const wordObj = words[randomIndex(words)];
-    return wordObj.word;
+    return wordObj?.word;
   } catch (error) {
-    console.error(`Error: ${error}`);
+    console.error(`Error: ${error}, function: getRandomWord`);
   }
 };
 
-const wordToGuess = getRandomWord().then((word) => word.trim().toUpperCase());
+const wordToGuess = getRandomWord().then((word) => word?.trim().toUpperCase());
 
 export { wordToGuess };

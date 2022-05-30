@@ -44,6 +44,10 @@ a {
   text-decoration: none;
 }
 
+ul {
+  list-style: none;
+}
+
 .wrapper {
   width: 95%;
   max-width: 1200px;
@@ -97,6 +101,19 @@ a {
 .btn.secondary-btn:active,
 .btn.secondary-btn:focus {
   background-color: var(--hover-secondary-color);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.options--btn {
+  max-width: 320px;
 }
 
 /* Header */
@@ -173,6 +190,11 @@ a {
   .wrapper {
     width: 90%;
   } 
+  
+  .options {
+    flex-direction: row-reverse;
+    justify-content: space-around;
+  }
 }
 
 @media screen and (min-width: 1200px) {

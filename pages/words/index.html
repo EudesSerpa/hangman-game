@@ -33,15 +33,64 @@
       </a>
     </header>
 
-    <main class="main wrapper"></main>
+    <main class="main wrapper">
+      <section class="section add-word">
+        <form class="add-word__form">
+          <label for="word-input" class="add-word__container">
+            <input
+              id="word-input"
+              name="word-input"
+              placeholder="Enter word or list of words here..."
+              class="add-word--word-input"
+              required
+            />
+            <p>Enter a word or list of words separated by commas here</p>
+          </label>
+
+          <ul class="add-word__form--errors"></ul>
+
+          <div class="add-word__form-footer">
+            <div class="add-word__info">
+              <i
+                class="add-word__info--icon fa-solid fa-circle-info"
+                aria-hidden="true"
+              ></i>
+              <span
+                >Only uppercase letters, no accents, no special characters</span
+              >
+            </div>
+
+            <div class="options">
+              <button type="submit" class="btn primary-btn options--btn">
+                Save and Play
+              </button>
+              <a
+                type="button"
+                href="../../index.html"
+                class="btn secondary-btn options--btn"
+                >Exit</a
+              >
+            </div>
+          </div>
+        </form>
+      </section>
+    </main>
 
     <footer class="footer">
       <p>
         Made with
         <i class="fa-solid fa-heart" aria-hidden="true"></i>
         by
-        <a href="https://www.linkedin.com/in/eudes-serpa/">Eudes Serpa</a>
+        <a
+          href="https://www.linkedin.com/in/eudes-serpa/"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Eudes Serpa</a
+        >
       </p>
     </footer>
+
+    <!-- Custom JS -->
+    <script src="./index.js" type="module"></script>
   </body>
 </html>

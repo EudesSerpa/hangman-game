@@ -30,6 +30,14 @@ const partToDrawPerAttempt = {
 };
 
 /**
+ * Removes the event listeners from the alphabetContainer and the document.
+ */
+function clearEvents() {
+  alphabetContainer.removeEventListener("click", checkLetterPressed);
+  document.removeEventListener("keyup", checkLetterPressed);
+}
+
+/**
  * It creates a div to be the container for the letter and a span to contain the letter.
  * (The div acts as the underscore for the letter).
  */
@@ -37,6 +45,13 @@ async function renderUnderscores() {
   try {
     const wordSection = document.querySelector(".word");
     const word = await wordToGuess;
+
+    if (!word) {
+      wordSection.innerText = "No word to guess";
+
+      clearEvents();
+      return;
+    }
 
     word.split("").forEach(() => {
       const letterContainer = document.createElement("div");
@@ -95,8 +110,7 @@ function isLetter(char) {
 }
 
 /**
- * It checks if the letter/button pressed is in the word to guess, if it is, it renders the letter, if not, it
- * draws a part of the hangman and decreases the guess attempts.
+ * It checks the letter/button pressed.
  *
  * @param event - The event object that is passed to the event handler.
  */
@@ -107,7 +121,7 @@ async function checkLetterPressed(event) {
       return;
     }
 
-    // Check if the key pressed is a letter
+    // Check if the key pressed isn't a letter
     if (event.key && !isLetter(event.key)) {
       return;
     }
@@ -115,6 +129,7 @@ async function checkLetterPressed(event) {
     let buttonPressed;
     let letter;
 
+    // Check the event type
     if (event.type === "keyup") {
       letter = event.key?.toUpperCase();
       buttonPressed = document.getElementById(`letter-${letter}`);
@@ -128,7 +143,6 @@ async function checkLetterPressed(event) {
       return;
     }
 
-    // Check if the letter is in the word
     await checkIfLetterBelongsToWord(letter, buttonPressed);
   } catch (error) {
     console.log(`Error: ${error}, function: checkLetterPressed`);
@@ -241,7 +255,7 @@ async function checkIfLost() {
  * @param {string} options.textColor - The color of the text.
  */
 function endGame({ text, imgUrl, textColor = "#fff" }) {
-  document.removeEventListener("keyup", checkLetterPressed);
+  clearEvents();
 
   // Disable all buttons
   const buttons = document.querySelectorAll(".letter-btn");
