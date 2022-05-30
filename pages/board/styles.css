@@ -47,8 +47,8 @@
   color: #e83636;
 }
 
-/* Alphabet */
-.alphabet {
+/* Keyboard */
+.keyboard {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

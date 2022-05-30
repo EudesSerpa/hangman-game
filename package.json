@@ -1,8 +1,8 @@
 {
   "name": "hangman_game",
   "version": "1.0.0",
-  "description": "Hangman game\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5D\u001b[1;5DONE challenge #2: Hangman game",
-  "main": "src/index.js",
+  "description": "Hangman game: DONE challenge #2: Hangman game",
+  "main": "pages/board/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -1,6 +1,6 @@
-import { range } from "../../utils/range.js";
+import { range } from "../../../utils/range.js";
 
-export const alphabetContainer = document.querySelector(".alphabet");
+export const keyboardContainer = document.querySelector(".keyboard");
 
 /* Creating an array of the alphabet. */
 const alphabet = range({
@@ -10,13 +10,9 @@ const alphabet = range({
 }).map((x) => String.fromCharCode(x));
 
 /**
- * For each letter in the alphabet array, create a button element,
- * add the letter as text to the button,
- * add the letter class and btn class to the button,
- * and append the button to the alphabet
- * container.
+ * For each letter in the alphabet array, it creates a button element and add the letter as text.
  */
-export function renderAlphabet() {
+export function renderKeyboard() {
   alphabet.forEach((letter) => {
     const letterBtn = document.createElement("button");
     const text = document.createTextNode(letter);
@@ -26,6 +22,6 @@ export function renderAlphabet() {
     letterBtn.classList.add("letter-btn", "btn");
     letterBtn.appendChild(text);
 
-    alphabetContainer.appendChild(letterBtn);
+    keyboardContainer.appendChild(letterBtn);
   });
 }

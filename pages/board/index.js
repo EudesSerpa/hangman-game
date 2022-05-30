@@ -1,23 +1,23 @@
-import { alphabetContainer, renderAlphabet } from "./alphabet.js";
-import { drawBackgound } from "./backgroundCanvas.js";
-import { ctx, canvas, drawGallow } from "./gallow.js";
-import { drawPart } from "./hangman.js";
-import { drawAttempts } from "./attempts.js";
+import { keyboardContainer, renderKeyboard } from "./keyboard/index.js";
+import { drawAttempts } from "./canvas/attempts.js";
+import { drawBackgound } from "./canvas/backgroundCanvas.js";
+import { ctx, canvas, drawGallow } from "./canvas/gallow.js";
+import { drawPart } from "./canvas/hangman.js";
 import { wordToGuess } from "./wordToGuess.js";
 
 let guessAttempts = 6;
 let guessedLetters = new Set();
 
-// --- Underscores: word to guess
-renderUnderscores();
-
-// --- Alphabet: keyboard
-renderAlphabet();
-
 // --- Canvas
 drawBackgound();
 drawGallow();
 drawAttempts(guessAttempts);
+
+// --- Underscores: word to guess
+renderUnderscores();
+
+// --- keyboard
+renderKeyboard();
 
 // --- Logic for the game
 const partToDrawPerAttempt = {
@@ -28,14 +28,6 @@ const partToDrawPerAttempt = {
   2: { part: "leg", side: "left" },
   1: { part: "leg", side: "right" }, // end
 };
-
-/**
- * Removes the event listeners from the alphabetContainer and the document.
- */
-function clearEvents() {
-  alphabetContainer.removeEventListener("click", checkLetterPressed);
-  document.removeEventListener("keyup", checkLetterPressed);
-}
 
 /**
  * It creates a div to be the container for the letter and a span to contain the letter.
@@ -292,5 +284,13 @@ function endGame({ text, imgUrl, textColor = "#fff" }) {
   };
 }
 
-alphabetContainer.addEventListener("click", checkLetterPressed);
+/**
+ * Removes the event listeners from the keyboardContainer (click) and the document (keyup).
+ */
+function clearEvents() {
+  keyboardContainer.removeEventListener("click", checkLetterPressed);
+  document.removeEventListener("keyup", checkLetterPressed);
+}
+
+keyboardContainer.addEventListener("click", checkLetterPressed);
 document.addEventListener("keyup", checkLetterPressed);

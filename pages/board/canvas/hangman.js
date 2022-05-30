@@ -1,7 +1,7 @@
 import { ctx, drawLine, drawFillRect, handle, rope } from "./gallow.js";
 
 // Change this to change the levels from Cheek to Chin of the face
-const LEVELSFROMCHEEKTOCHIN = 3;
+const LEVELS_FROM_CHEEK_TO_CHIN = 3;
 
 // Head
 const hat = {
@@ -47,7 +47,7 @@ const face = {
     endY: hair.endY + 60,
     width: 120,
     height: 11,
-    levels: LEVELSFROMCHEEKTOCHIN,
+    levels: LEVELS_FROM_CHEEK_TO_CHIN,
   },
 };
 

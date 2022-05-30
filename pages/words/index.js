@@ -1,72 +1,37 @@
 import { postWords } from "../../services/postWords.js";
+import { validations } from "../../utils/validations.js";
 
 const form = document.querySelector("form");
 const inputWord = document.getElementById("word-input");
 
 inputWord.focus(); // focus on input field
 
-const requirements = {
-  word: {
-    required: true,
-    minLength: 3,
-    regexOnlyLetters: /^[A-Z]+$/,
-  },
-};
-
 /**
- * It validates the word based on the requirements.
+ * It creates a list item with a list of errors.
  *
- * @param word - the word to be validated
- * @returns {object} - an object with errors.
- */
-const validations = (word) => {
-  const errors = {};
-
-  if (requirements.word.required && !word) {
-    errors.required = "Word is required)";
-  }
-
-  if (
-    requirements.word.minLength &&
-    word.length < requirements.word.minLength
-  ) {
-    errors.minLength = `Word must be at least ${requirements.word.minLength} characters long`;
-  }
-
-  if (!requirements.word.regexOnlyLetters.test(word)) {
-    errors.onlyLetters = "Word must be only letters";
-  }
-
-  return errors;
-};
-
-/**
- * It takes a reference node and an error message and returns a list item with a label that contains a reference to the input and the error message.
+ * @param {object} data - the data to be rendered
+ * @param {string} data.idNode - the id of the input field that generated the error
+ * @param {string} data.errorPosition - the position of the word that generated the error
+ * @param {string} data.word - the word that generated the error
+ * @param {array} data.listError - the list of errors that contains the word
  *
- * @param idNode - The id of the input field that contains the error.
- * @param error - The error message to display.
+ * @returns {string} - the list item with the errors
  */
-const listItemError = (idNode, error) =>
-  `<li>
+const listItemError = ({ idNode, errorPosition, word, listError }) => {
+  const errorItemDetails = (error) =>
+    `<li>
     <label for="${idNode}">
       ${error}
     </label>
   </li>`;
 
-/**
- * It sends the word to the server and redirects to the board page.
- *
- * @param word - the word that the user has entered
- */
-const sendWord = (word) => {
-  postWords(word)
-    .then((respose) => {
-      console.log(respose);
-      window.location.assign("/pages/board/index.html");
-    })
-    .catch((error) => {
-      console.log(`Error: ${error}, function: sendWord`);
-    });
+  return `<li>
+      ${errorPosition}° word: "${word}"
+    
+      <ul class="add-word__form--errors inner-errors">
+        ${listError.map(errorItemDetails).join("")}
+      </ul>
+    </li>`;
 };
 
 /**
@@ -82,9 +47,25 @@ const renderListErrors = (items) => {
 };
 
 /**
- * It handles the submit event.
+ * It sends the word to the server and redirects to the board page.
  *
- * @param e - the event object.
+ * @param word - the word that the user has entered
+ */
+const sendWord = (word) => {
+  postWords(word)
+    .then(() => {
+      window.location.assign("/pages/board/index.html");
+    })
+    .catch((error) => {
+      console.log(`Error: ${error}, function: sendWord`);
+    });
+};
+
+/**
+ * It takes a string of words separated by commas, validates each word, and if there are no errors,
+ * sends each word to the server.
+ *
+ * @param e - the event object
  */
 const handleSubmit = (e) => {
   e.preventDefault();
@@ -95,6 +76,7 @@ const handleSubmit = (e) => {
   const listOfWords = dataInput.replace(/\s/g, "").split(",");
   const listOfErrors = [];
 
+  // check if each word is valid
   listOfWords.forEach((word, idx) => {
     const errors = validations(word);
     const errorData = Object.entries(errors);
@@ -108,20 +90,19 @@ const handleSubmit = (e) => {
     }
   });
 
+  // render the errors or send the word to the server
   if (listOfErrors.length > 0) {
     listOfErrors.forEach(({ position, word, errors }) => {
       const errorMessages = Object.values(errors);
-      const listItem = `<li>
-          ${position}° word: "${word}"
-        
-          <ul class="add-word__form--errors inner-errors">
-            ${errorMessages
-              .map((error) => listItemError(wordInputId, error))
-              .join("")}
-          </ul>
-        </li>`;
 
-      renderListErrors(listItem);
+      renderListErrors(
+        listItemError({
+          idNode: wordInputId,
+          errorPosition: position,
+          word,
+          listError: errorMessages,
+        })
+      );
     });
   } else {
     renderListErrors("");
