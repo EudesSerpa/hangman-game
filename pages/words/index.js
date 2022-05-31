@@ -54,7 +54,11 @@ const renderListErrors = (items) => {
 const sendWord = (word) => {
   postWords(word)
     .then(() => {
-      window.location.assign("/pages/board/index.html");
+      const boardPathname = `${window.location.pathname.replace(
+        "words/index.html",
+        "board/index.html"
+      )}`;
+      window.location.assign(`${window.location.origin}${boardPathname}`);
     })
     .catch((error) => {
       console.log(`Error: ${error}, function: sendWord`);
